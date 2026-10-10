@@ -32,6 +32,8 @@ Press Play and you stand on the sand strip between the lakes with the UZI in you
 | **Sky & sun** | `Assets/Skies/goegap_2k.hdr` as the sky; the directional light points where the picture's sun is (azimuth 219°, elevation 46°); the gradient colours are the environment the water and glossy surfaces reflect |
 | **Air** | warm exp² haze that thins with height, SSAO, a touch of bloom (scene settings) |
 | **Player** | the Tactical Shooter rig (`Assets/Prefabs/TacticalPlayer.ventity`): animated UZI and CZ Scorpion, CoD movement (sprint, slide, mantle), HUD. The gun **RANGE** is the project's second scene |
+| **Weather** | `Assets/Scripts/World/Weather.cs` blends four presets over twelve seconds — **clear**, **haze**, **sandstorm** (brown sky, 80 m visibility, sand sheets racing past, a storm in the palms) and **dusk** (the sunset HDRI, a low orange sun): fog and height fog, the sun, the sky, the ambient light, the wind, the dust emitters under the player and the wind you hear. **O** next preset, **L** previous; `Set("sandstorm")` from any script |
+| **The infected** | `Assets/Prefabs/Zombie.ventity` — operators who did not make it out: a hunched shamble between random points, a flat-out sprint once they see you (80 m, 160° view, they hear a shot from 70 m), a lunge and bite within reach, your bullets drop them into a ragdoll. `Assets/AI/Zombie.vbt` decides, `Assets/Scripts/AI/Zombie.cs` is the body. The **Zombies** entity's `ZombieDirector.cs` keeps up to ten on the navmesh 40–130 m around you and tops them up; **Z** calls a wave of four |
 
 ## 🎮 Controls
 
@@ -39,6 +41,7 @@ Press Play and you stand on the sand strip between the lakes with the UZI in you
 |-------|--------|
 | **WASD** + mouse | move + look · **Shift** sprint (double-tap **W** tactical sprint) · **Ctrl / C** crouch / slide · **Space** jump / mantle |
 | **LMB** | fire · **RMB** aim · **R** reload · **B** fire mode · **1 / 2** switch weapon · **I** inspect |
+| **O / L** | next / previous weather · **Z** a wave of infected |
 | **ESC** | settings · **P** (editor) free camera |
 
 ## 🛠 Rebuilding the oasis
@@ -48,7 +51,7 @@ The scene was authored by code, not by hand: the engine's `oasis setup` authorin
 by biome rules (height above the water, slope, distance to the oasis, grove noise) and sets the sky, sun and fog — through
 the same services the editor's tools and the MCP server use. From the editor chat, Claude's tools cover all of it:
 `create_terrain` / `sculpt_terrain` / `paint_terrain_layer`, `create_water`, `create_foliage_layer` / `add_foliage_type` /
-`paint_foliage`, `set_sky` (with `align_sun` for an HDRI), `set_environment`.
+`paint_foliage`, `set_sky` (with `align_sun` for an HDRI), `set_environment`, `set_weather`; `place_asset` puts a `Zombie.ventity` wherever you point.
 
 Heavy photoscanned models were reduced for instancing with `tools/gltf-decimate.py` (Poly Haven's 0.1–2 M-triangle
 plants and rocks to 1–40 k); leaf cut-outs were merged with `tools/polyhaven-leaf-alpha.py`. The tools live in the engine

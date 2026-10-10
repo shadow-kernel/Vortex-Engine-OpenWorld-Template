@@ -1,0 +1,221 @@
+{
+  "name": "Zombie",
+  "version": 1,
+  "description": "The infected's mind: sprint at the player on sight and bite within reach, go to noises (a shot pulls every zombie in hearing range), search where the player was last seen or heard, otherwise shamble between random points Zombie.cs writes into WanderPoint. Every leaf is a built-in task; Zombie.cs (the Script on the prefab) reacts to the SendMessage nodes (clips, speeds, the lunge).",
+  "blackboard": {
+    "AttackDistance": "1.6"
+  },
+  "root": {
+    "id": "root0001",
+    "kind": "selector",
+    "name": "Zombie",
+    "children": [
+      {
+        "id": "chase001",
+        "kind": "sequence",
+        "name": "Chase",
+        "comment": "The player is in sight: run at them. CanSee aborts the lower branches the moment the player is seen, and the chase itself when sight is lost.",
+        "children": [
+          {
+            "id": "chase002",
+            "kind": "condition",
+            "task": "CanSee",
+            "abort": "both",
+            "params": {
+              "key": "Target"
+            }
+          },
+          {
+            "id": "chase003",
+            "kind": "task",
+            "task": "SendMessage",
+            "name": "tell: chase",
+            "params": {
+              "message": "bt.chase"
+            }
+          },
+          {
+            "id": "chase004",
+            "kind": "task",
+            "task": "MoveTo",
+            "name": "run at the player",
+            "params": {
+              "target": "Target",
+              "acceptance": "{AttackDistance}",
+              "speed": "4.4"
+            }
+          },
+          {
+            "id": "chase005",
+            "kind": "task",
+            "task": "Wait",
+            "name": "the bite (Zombie.cs lunges)",
+            "params": {
+              "seconds": "0.9"
+            }
+          }
+        ]
+      },
+      {
+        "id": "inv001",
+        "kind": "sequence",
+        "name": "Investigate",
+        "children": [
+          {
+            "id": "inv002",
+            "kind": "condition",
+            "task": "HasHeard",
+            "abort": "lowerPriority",
+            "params": {
+              "maxAge": "10",
+              "key": "HeardAt"
+            }
+          },
+          {
+            "id": "inv003",
+            "kind": "task",
+            "task": "SendMessage",
+            "name": "tell: investigate",
+            "params": {
+              "message": "bt.investigate"
+            }
+          },
+          {
+            "id": "inv004",
+            "kind": "task",
+            "task": "MoveTo",
+            "name": "go to the noise",
+            "params": {
+              "target": "HeardAt",
+              "acceptance": "1.5",
+              "speed": "2.4"
+            }
+          },
+          {
+            "id": "inv005",
+            "kind": "task",
+            "task": "Wait",
+            "name": "look around",
+            "params": {
+              "seconds": "2.5",
+              "random": "1.5"
+            }
+          },
+          {
+            "id": "inv006",
+            "kind": "task",
+            "task": "ForgetTarget",
+            "params": {
+              "key": "HeardAt"
+            }
+          }
+        ]
+      },
+      {
+        "id": "srch001",
+        "kind": "sequence",
+        "name": "Search",
+        "children": [
+          {
+            "id": "srch002",
+            "kind": "condition",
+            "task": "LastKnownPosition",
+            "params": {
+              "key": "LastKnown"
+            }
+          },
+          {
+            "id": "srch003",
+            "kind": "task",
+            "task": "SendMessage",
+            "name": "tell: search",
+            "params": {
+              "message": "bt.search"
+            }
+          },
+          {
+            "id": "srch004",
+            "kind": "task",
+            "task": "MoveTo",
+            "name": "go to the last known spot",
+            "params": {
+              "target": "LastKnown",
+              "acceptance": "1.5",
+              "speed": "2.6"
+            }
+          },
+          {
+            "id": "srch005",
+            "kind": "task",
+            "task": "Wait",
+            "params": {
+              "seconds": "3",
+              "random": "2"
+            }
+          },
+          {
+            "id": "srch006",
+            "kind": "task",
+            "task": "ForgetTarget",
+            "params": {
+              "key": "Target"
+            }
+          }
+        ]
+      },
+      {
+        "id": "wand001",
+        "kind": "sequence",
+        "name": "Wander",
+        "comment": "Zombie.cs puts a random navmesh point into WanderPoint; shamble there, stand a while, repeat.",
+        "children": [
+          {
+            "id": "wand002",
+            "kind": "task",
+            "task": "SendMessage",
+            "name": "tell: wander",
+            "params": {
+              "message": "bt.wander"
+            }
+          },
+          {
+            "id": "wand003",
+            "kind": "condition",
+            "task": "HasValue",
+            "params": {
+              "key": "WanderPoint"
+            }
+          },
+          {
+            "id": "wand004",
+            "kind": "task",
+            "task": "MoveTo",
+            "name": "shamble",
+            "params": {
+              "target": "WanderPoint",
+              "acceptance": "1.2",
+              "speed": "0.9"
+            }
+          },
+          {
+            "id": "wand005",
+            "kind": "task",
+            "task": "ClearValue",
+            "params": {
+              "key": "WanderPoint"
+            }
+          },
+          {
+            "id": "wand006",
+            "kind": "task",
+            "task": "Wait",
+            "params": {
+              "seconds": "3",
+              "random": "4"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
