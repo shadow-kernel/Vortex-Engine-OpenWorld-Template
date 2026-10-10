@@ -1,0 +1,196 @@
+﻿{
+  "id": "6e3f46c0-76d9-4403-9011-d346a7ccf0a1",
+  "name": "Player",
+  "isActive": true,
+  "isStatic": false,
+  "layer": 0,
+  "tag": "Player",
+  "children": [
+    {
+      "id": "499931aa-f65a-4d9e-bf19-67b60344c9f3",
+      "name": "Feet",
+      "isActive": true,
+      "isStatic": false,
+      "layer": 0,
+      "tag": "Untagged",
+      "children": [ ],
+      "components": [
+        {
+          "__type": "Transform",
+          "id": "ec7a2f7f-fda3-4156-9a70-6003b91ebaa0",
+          "isEnabled": true,
+          "localPosition": {
+            "x": 0,
+            "y": -1.7,
+            "z": 0
+          },
+          "localRotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "localScale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          }
+        },
+        {
+          "__type": "Script",
+          "id": "f9595985-b91e-4efc-8c26-9b10da51fe15",
+          "isEnabled": true,
+          "scriptPath": "Assets\/Scripts\/Player\/FootstepAudio.cs",
+          "scriptClassName": "FootstepAudio",
+          "fieldValues": [ ]
+        }
+      ],
+      "isFolder": false,
+      "prefabPath": null,
+      "isLockedToParent": false
+    },
+    {
+      "id": "a8971e29-9409-47e4-9b6f-f121f0e7bca6",
+      "name": "Interactor",
+      "isActive": true,
+      "isStatic": false,
+      "layer": 0,
+      "tag": "Untagged",
+      "children": [ ],
+      "components": [
+        {
+          "__type": "Transform",
+          "id": "d6785817-9df1-46dd-90d6-169cc32fc80b",
+          "isEnabled": true,
+          "localPosition": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "localRotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "localScale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          }
+        },
+        {
+          "__type": "Script",
+          "id": "7365794b-7e76-4989-8ef6-4d3b72794f02",
+          "isEnabled": true,
+          "scriptPath": "Assets\/Scripts\/Player\/Interactor.cs",
+          "scriptClassName": "Interactor",
+          "fieldValues": [ ]
+        }
+      ],
+      "isFolder": false,
+      "prefabPath": null,
+      "isLockedToParent": false
+    },
+    {
+      "id": "a6714356-3e78-4e12-be6e-ab4204ce4ac9",
+      "name": "Loadout",
+      "isActive": true,
+      "isStatic": false,
+      "layer": 0,
+      "tag": "Untagged",
+      "children": [ ],
+      "components": [
+        {
+          "__type": "Transform",
+          "id": "1c5d0d16-7fbb-4e14-b41c-2279b1a13aa9",
+          "isEnabled": true,
+          "localPosition": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "localRotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "localScale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          }
+        },
+        {
+          "__type": "Script",
+          "id": "a2c43295-0778-480f-8ba9-a016c603fbed",
+          "isEnabled": true,
+          "scriptPath": "Assets\/Scripts\/Weapons\/WeaponLoadout.cs",
+          "scriptClassName": "WeaponLoadout",
+          "fieldValues": [
+            {
+              "name": "Slots",
+              "value": "Viewmodel_UZI,Viewmodel_Scorpion"
+            },
+            {
+              "name": "StartSlot",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "isFolder": false,
+      "prefabPath": null,
+      "isLockedToParent": false
+    }
+  ],
+  "components": [
+    {
+      "__type": "Transform",
+      "id": "33d30934-b7d7-4a52-8edc-68c6c4cabb8b",
+      "isEnabled": true,
+      "localPosition": {
+        "x": 0,
+        "y": 1.7,
+        "z": -3.2
+      },
+      "localRotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "localScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "__type": "Camera",
+      "id": "caa8369b-5142-43f8-a995-35c2841c4773",
+      "isEnabled": true,
+      "projection": 0,
+      "clearFlags": 0,
+      "fov": 80,
+      "orthoSize": 5,
+      "nearClip": 0.03,
+      "farClip": 1500,
+      "isMainCamera": true,
+      "depth": 0,
+      "bgR": 0,
+      "bgG": 0,
+      "bgB": 0.3,
+      "cullingMask": -1,
+      "cameraType": 0
+    },
+    {
+      "__type": "Script",
+      "id": "221fad54-e2d1-4914-b463-ae19e9a84606",
+      "isEnabled": true,
+      "scriptPath": "Assets\/Scripts\/Player\/CoDMovement.cs",
+      "scriptClassName": "CoDMovement",
+      "fieldValues": [ ]
+    }
+  ],
+  "isFolder": false,
+  "prefabPath": null,
+  "isLockedToParent": false
+}

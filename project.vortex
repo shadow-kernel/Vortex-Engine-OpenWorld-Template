@@ -1,0 +1,38 @@
+﻿{
+  "id": "34967b90-6049-4e79-9c30-47d06339d628",
+  "name": "Open World",
+  "version": "1.0.0",
+  "engineVersion": "3.4.0",
+  "lastModified": "/Date(1791640898499+0200)/",
+  "createdAt": "/Date(1791640898500+0200)/",
+  "thumbnailPath": ".ve/icon.png",
+  "startSceneId": "cbd528a2-e803-4b9e-888d-78a2402a53ea",
+  "lastOpenSceneId": "cbd528a2-e803-4b9e-888d-78a2402a53ea",
+  "formatVersion": 2,
+  "scenes": [
+    {
+      "id": "cbd528a2-e803-4b9e-888d-78a2402a53ea",
+      "name": "Oasis",
+      "path": "Oasis.vscene",
+      "loadOnStart": false
+    },
+    {
+      "id": "5c0d7a31-8e2b-4f6a-9c1d-3b7e5a2f8101",
+      "name": "Range",
+      "path": "Range.vscene",
+      "loadOnStart": false
+    }
+  ],
+  "settings": {
+    "companyName": "Vortex",
+    "productName": "Open World",
+    "defaultScreenWidth": 1920,
+    "defaultScreenHeight": 1080,
+    "fullscreenByDefault": false,
+    "vSync": true,
+    "targetFPS": 60,
+    "productVersion": null,
+    "iconPath": null,
+    "bundleIdentifier": null
+  }
+}

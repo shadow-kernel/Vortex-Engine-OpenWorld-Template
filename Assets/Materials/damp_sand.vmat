@@ -1,0 +1,38 @@
+{
+  "Name": "damp_sand",
+  "Version": "2.0",
+  "BaseColor": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "Metallic": 0,
+  "Roughness": 1,
+  "AmbientOcclusion": 1,
+  "NormalStrength": 1,
+  "HeightScale": 0.0,
+  "UseDirectXNormals": true,
+  "EmissiveStrength": 0.0,
+  "TwoSided": false,
+  "BlendMode": "Opaque",
+  "CastShadows": true,
+  "ReceiveShadows": true,
+  "AlbedoTexture": "../Textures/damp_sand/damp_sand_diff_2k.jpg",
+  "UVTiling": [
+    1,
+    1
+  ],
+  "UVOffset": [
+    0,
+    0
+  ],
+  "RealWorldSize": [
+    2039.9997234344482,
+    2039.9997234344482
+  ],
+  "NormalTexture": "../Textures/damp_sand/damp_sand_nor_dx_2k.jpg",
+  "RoughnessTexture": "../Textures/damp_sand/damp_sand_rough_2k.jpg",
+  "AOTexture": "../Textures/damp_sand/damp_sand_ao_2k.jpg",
+  "HeightTexture": "../Textures/damp_sand/damp_sand_disp_2k.jpg"
+}

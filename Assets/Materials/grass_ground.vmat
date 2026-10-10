@@ -1,0 +1,38 @@
+{
+  "Name": "grass_ground",
+  "Version": "2.0",
+  "BaseColor": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "Metallic": 0,
+  "Roughness": 1,
+  "AmbientOcclusion": 1,
+  "NormalStrength": 1,
+  "HeightScale": 0.0,
+  "UseDirectXNormals": true,
+  "EmissiveStrength": 0.0,
+  "TwoSided": false,
+  "BlendMode": "Opaque",
+  "CastShadows": true,
+  "ReceiveShadows": true,
+  "AlbedoTexture": "../Textures/grass_ground/grass_ground_diff_2k.jpg",
+  "UVTiling": [
+    1,
+    1
+  ],
+  "UVOffset": [
+    0,
+    0
+  ],
+  "RealWorldSize": [
+    2509.999990463257,
+    2509.999990463257
+  ],
+  "NormalTexture": "../Textures/grass_ground/grass_ground_nor_dx_2k.jpg",
+  "RoughnessTexture": "../Textures/grass_ground/grass_ground_rough_2k.jpg",
+  "AOTexture": "../Textures/grass_ground/grass_ground_ao_2k.jpg",
+  "HeightTexture": "../Textures/grass_ground/grass_ground_disp_2k.jpg"
+}

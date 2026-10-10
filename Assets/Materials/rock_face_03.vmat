@@ -1,0 +1,38 @@
+{
+  "Name": "rock_face_03",
+  "Version": "2.0",
+  "BaseColor": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "Metallic": 0,
+  "Roughness": 1,
+  "AmbientOcclusion": 1,
+  "NormalStrength": 1,
+  "HeightScale": 0.0,
+  "UseDirectXNormals": true,
+  "EmissiveStrength": 0.0,
+  "TwoSided": false,
+  "BlendMode": "Opaque",
+  "CastShadows": true,
+  "ReceiveShadows": true,
+  "AlbedoTexture": "../Textures/rock_face_03/rock_face_03_diff_2k.jpg",
+  "UVTiling": [
+    1,
+    1
+  ],
+  "UVOffset": [
+    0,
+    0
+  ],
+  "RealWorldSize": [
+    2699.9995708465576,
+    2699.9995708465576
+  ],
+  "NormalTexture": "../Textures/rock_face_03/rock_face_03_nor_dx_2k.jpg",
+  "RoughnessTexture": "../Textures/rock_face_03/rock_face_03_rough_2k.jpg",
+  "AOTexture": "../Textures/rock_face_03/rock_face_03_ao_2k.jpg",
+  "HeightTexture": "../Textures/rock_face_03/rock_face_03_disp_2k.jpg"
+}

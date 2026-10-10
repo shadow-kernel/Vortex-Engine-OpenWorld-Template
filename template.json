@@ -1,0 +1,8 @@
+{
+  "name": "Open World",
+  "tagline": "A desert oasis under a real sky: dunes, two turquoise lakes, palm groves, boulders \u2014 with the Tactical weapons in hand",
+  "description": "The engine's open-world template. OASIS is a 512 m desert biome built entirely from engine data: a sculpted heightfield terrain (sand, damp shore, sandstone escarpment, grass), two Water surfaces that follow the basin, a Foliage layer with 28 kinds of plants and rocks (date palms, quiver trees, desert shrubs, succulents, reeds and grass at the water, boulders, cliffs) scattered by biome rules, a Radiance HDRI sky whose sun lights the scene, warm height fog, SSAO and bloom. You play it with the Tactical Shooter's animated weapons, CoD movement and HUD; the gun RANGE is still in the project as a second scene. Every system is a readable project script and every asset a CC0 download (Poly Haven, Yughues) \u2014 the world was authored through the engine's own services and MCP tools, so Claude can reshape it from the editor chat: terrain, foliage, water, sky and fog.",
+  "preview": "preview.png",
+  "project": ".",
+  "order": 3
+}

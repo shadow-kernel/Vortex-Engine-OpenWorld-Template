@@ -1,0 +1,38 @@
+{
+  "Name": "aerial_sand",
+  "Version": "2.0",
+  "BaseColor": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "Metallic": 0,
+  "Roughness": 1,
+  "AmbientOcclusion": 1,
+  "NormalStrength": 1,
+  "HeightScale": 0.0,
+  "UseDirectXNormals": true,
+  "EmissiveStrength": 0.0,
+  "TwoSided": false,
+  "BlendMode": "Opaque",
+  "CastShadows": true,
+  "ReceiveShadows": true,
+  "AlbedoTexture": "../Textures/aerial_sand/aerial_sand_diff_2k.jpg",
+  "UVTiling": [
+    1,
+    1
+  ],
+  "UVOffset": [
+    0,
+    0
+  ],
+  "RealWorldSize": [
+    15000.0,
+    15000.0
+  ],
+  "NormalTexture": "../Textures/aerial_sand/aerial_sand_nor_dx_2k.jpg",
+  "RoughnessTexture": "../Textures/aerial_sand/aerial_sand_rough_2k.jpg",
+  "AOTexture": "../Textures/aerial_sand/aerial_sand_ao_2k.jpg",
+  "HeightTexture": "../Textures/aerial_sand/aerial_sand_disp_2k.jpg"
+}
