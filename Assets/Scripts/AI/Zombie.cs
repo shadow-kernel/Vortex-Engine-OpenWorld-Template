@@ -48,8 +48,17 @@ public class Zombie : VortexBehaviour
         PickWanderPoint();
     }
 
+    public bool Diagnostics = false;   // log state / tree task / path / sight every 3 s (debugging a silent horde)
+    private float _diag;
     public override void Update(float dt)
     {
+        _diag += dt;
+        if (Diagnostics && _diag > 3f)
+        {
+            _diag = 0f;
+            Vector3 me = Scene.WorldPositionOf(EntityId);
+            Debug.Log("Zombie " + EntityId + ": " + _state + " tree=" + (BehaviorTree.IsRunning(EntityId) ? BehaviorTree.ActiveTask(EntityId) : "stopped") + " dest=" + Navigation.HasDestination(EntityId) + " moving=" + Navigation.IsMoving(EntityId) + " path=" + Navigation.PathStatus(EntityId) + " sees=" + Perception.CanSee(EntityId) + " at " + me.X.ToString("0") + "," + me.Y.ToString("0") + "," + me.Z.ToString("0") + " clip=" + _clip);
+        }
         if (_dead)
         {
             if (_despawn > 0f) { _despawn -= dt; if (_despawn <= 0f) Scene.Destroy(EntityId); }
@@ -99,7 +108,7 @@ public class Zombie : VortexBehaviour
     {
         _wanderWait = 4f + (float)(new System.Random(EntityId.GetHashCode() ^ System.Environment.TickCount).NextDouble() * 6f);
         Vector3 p;
-        if (Navigation.RandomPoint(Scene.WorldPositionOf(EntityId), WanderRadius, out p))
+        if (Navigation.RandomPoint(Scene.WorldPositionOf(EntityId), WanderRadius, out p) && !Water.IsUnderwater(p))   // the lakes are not for shambling
         {
             var bb = BehaviorTree.BlackboardOf(EntityId);
             if (bb != null) bb.Set("WanderPoint", p);

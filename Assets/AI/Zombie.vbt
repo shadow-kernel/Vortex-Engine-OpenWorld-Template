@@ -1,7 +1,7 @@
 {
   "name": "Zombie",
   "version": 1,
-  "description": "The infected's mind: sprint at the player on sight and bite within reach, go to noises (a shot pulls every zombie in hearing range), search where the player was last seen or heard, otherwise shamble between random points Zombie.cs writes into WanderPoint. Every leaf is a built-in task; Zombie.cs (the Script on the prefab) reacts to the SendMessage nodes (clips, speeds, the lunge).",
+  "description": "The infected's mind: sprint at the player on sight and bite within reach, go to noises (a shot pulls every zombie in hearing range), search where the player was last seen or heard, otherwise shamble between random points Zombie.cs writes into WanderPoint. The sight and hearing guards are DECORATORS directly under the root selector so their aborts cut the lower branches the moment they pass. Every leaf is a built-in task; Zombie.cs reacts to the SendMessage nodes.",
   "blackboard": {
     "AttackDistance": "1.6"
   },
@@ -11,103 +11,109 @@
     "name": "Zombie",
     "children": [
       {
-        "id": "chase001",
-        "kind": "sequence",
-        "name": "Chase",
-        "comment": "The player is in sight: run at them. CanSee aborts the lower branches the moment the player is seen, and the chase itself when sight is lost.",
+        "id": "see0001",
+        "kind": "condition",
+        "task": "CanSee",
+        "name": "the player in sight?",
+        "abort": "both",
+        "params": {
+          "key": "Target"
+        },
+        "comment": "A guard with a subtree: observed from the selector, it aborts whatever runs below the moment the player is seen, and the chase itself when sight is lost.",
         "children": [
           {
-            "id": "chase002",
-            "kind": "condition",
-            "task": "CanSee",
-            "abort": "both",
-            "params": {
-              "key": "Target"
-            }
-          },
-          {
-            "id": "chase003",
-            "kind": "task",
-            "task": "SendMessage",
-            "name": "tell: chase",
-            "params": {
-              "message": "bt.chase"
-            }
-          },
-          {
-            "id": "chase004",
-            "kind": "task",
-            "task": "MoveTo",
-            "name": "run at the player",
-            "params": {
-              "target": "Target",
-              "acceptance": "{AttackDistance}",
-              "speed": "4.4"
-            }
-          },
-          {
-            "id": "chase005",
-            "kind": "task",
-            "task": "Wait",
-            "name": "the bite (Zombie.cs lunges)",
-            "params": {
-              "seconds": "0.9"
-            }
+            "id": "chase001",
+            "kind": "sequence",
+            "name": "Chase",
+            "children": [
+              {
+                "id": "chase003",
+                "kind": "task",
+                "task": "SendMessage",
+                "name": "tell: chase",
+                "params": {
+                  "message": "bt.chase"
+                }
+              },
+              {
+                "id": "chase004",
+                "kind": "task",
+                "task": "MoveTo",
+                "name": "run at the player",
+                "params": {
+                  "target": "Target",
+                  "acceptance": "{AttackDistance}",
+                  "speed": "4.4"
+                }
+              },
+              {
+                "id": "chase005",
+                "kind": "task",
+                "task": "Wait",
+                "name": "the bite (Zombie.cs lunges)",
+                "params": {
+                  "seconds": "0.9"
+                }
+              }
+            ]
           }
         ]
       },
       {
-        "id": "inv001",
-        "kind": "sequence",
-        "name": "Investigate",
+        "id": "hear0001",
+        "kind": "condition",
+        "task": "HasHeard",
+        "name": "a noise?",
+        "abort": "lowerPriority",
+        "params": {
+          "maxAge": "10",
+          "key": "HeardAt"
+        },
         "children": [
           {
-            "id": "inv002",
-            "kind": "condition",
-            "task": "HasHeard",
-            "abort": "lowerPriority",
-            "params": {
-              "maxAge": "10",
-              "key": "HeardAt"
-            }
-          },
-          {
-            "id": "inv003",
-            "kind": "task",
-            "task": "SendMessage",
-            "name": "tell: investigate",
-            "params": {
-              "message": "bt.investigate"
-            }
-          },
-          {
-            "id": "inv004",
-            "kind": "task",
-            "task": "MoveTo",
-            "name": "go to the noise",
-            "params": {
-              "target": "HeardAt",
-              "acceptance": "1.5",
-              "speed": "2.4"
-            }
-          },
-          {
-            "id": "inv005",
-            "kind": "task",
-            "task": "Wait",
-            "name": "look around",
-            "params": {
-              "seconds": "2.5",
-              "random": "1.5"
-            }
-          },
-          {
-            "id": "inv006",
-            "kind": "task",
-            "task": "ForgetTarget",
-            "params": {
-              "key": "HeardAt"
-            }
+            "id": "inv001",
+            "kind": "sequence",
+            "name": "Investigate",
+            "children": [
+              {
+                "id": "inv003",
+                "kind": "task",
+                "task": "SendMessage",
+                "name": "tell: investigate",
+                "params": {
+                  "message": "bt.investigate"
+                }
+              },
+              {
+                "id": "inv004",
+                "kind": "task",
+                "task": "MoveTo",
+                "name": "go to the noise",
+                "params": {
+                  "target": "HeardAt",
+                  "acceptance": "1.5",
+                  "speed": "2.4"
+                }
+              },
+              {
+                "id": "inv005",
+                "kind": "task",
+                "task": "Wait",
+                "name": "look around",
+                "params": {
+                  "seconds": "2.5",
+                  "random": "1.5"
+                }
+              },
+              {
+                "id": "inv006",
+                "kind": "task",
+                "task": "ForgetTarget",
+                "params": {
+                  "key": "HeardAt"
+                }
+              }
+            ]
           }
         ]
       },
