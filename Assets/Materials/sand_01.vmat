@@ -1,0 +1,38 @@
+{
+  "Name": "sand_01",
+  "Version": "2.0",
+  "BaseColor": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "Metallic": 0,
+  "Roughness": 1,
+  "AmbientOcclusion": 1,
+  "NormalStrength": 1,
+  "HeightScale": 0.0,
+  "UseDirectXNormals": true,
+  "EmissiveStrength": 0.0,
+  "TwoSided": false,
+  "BlendMode": "Opaque",
+  "CastShadows": true,
+  "ReceiveShadows": true,
+  "AlbedoTexture": "../Textures/sand_01/sand_01_diff_4k.jpg",
+  "UVTiling": [
+    1,
+    1
+  ],
+  "UVOffset": [
+    0,
+    0
+  ],
+  "RealWorldSize": [
+    1500.0,
+    1500.0
+  ],
+  "NormalTexture": "../Textures/sand_01/sand_01_nor_dx_4k.jpg",
+  "AOTexture": "../Textures/sand_01/sand_01_ao_4k.jpg",
+  "HeightTexture": "../Textures/sand_01/sand_01_disp_4k.jpg",
+  "OcclusionRoughnessMetallicTexture": "../Textures/sand_01/sand_01_arm_4k.jpg"
+}

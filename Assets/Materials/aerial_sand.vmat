@@ -18,7 +18,7 @@
   "BlendMode": "Opaque",
   "CastShadows": true,
   "ReceiveShadows": true,
-  "AlbedoTexture": "../Textures/aerial_sand/aerial_sand_diff_2k.jpg",
+  "AlbedoTexture": "../Textures/aerial_sand/aerial_sand_diff_4k.jpg",
   "UVTiling": [
     1,
     1
@@ -31,8 +31,8 @@
     15000.0,
     15000.0
   ],
-  "NormalTexture": "../Textures/aerial_sand/aerial_sand_nor_dx_2k.jpg",
-  "RoughnessTexture": "../Textures/aerial_sand/aerial_sand_rough_2k.jpg",
-  "AOTexture": "../Textures/aerial_sand/aerial_sand_ao_2k.jpg",
-  "HeightTexture": "../Textures/aerial_sand/aerial_sand_disp_2k.jpg"
+  "NormalTexture": "../Textures/aerial_sand/aerial_sand_nor_dx_4k.jpg",
+  "RoughnessTexture": "../Textures/aerial_sand/aerial_sand_rough_4k.jpg",
+  "AOTexture": "../Textures/aerial_sand/aerial_sand_ao_4k.jpg",
+  "HeightTexture": "../Textures/aerial_sand/aerial_sand_disp_4k.jpg"
 }
