@@ -1,0 +1,24 @@
+{
+  "varea": 1,
+  "name": "Grove",
+  "shape": "Box",
+  "size": [
+    150,
+    60,
+    150
+  ],
+  "tags": [
+    "grove",
+    "no-fly"
+  ],
+  "properties": {
+    "flightAllowed": "false",
+    "ambient": "jungle"
+  },
+  "color": [
+    0.3,
+    0.9,
+    0.4
+  ],
+  "priority": 0
+}
