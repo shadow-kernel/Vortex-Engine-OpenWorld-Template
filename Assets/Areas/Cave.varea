@@ -1,0 +1,25 @@
+{
+  "varea": 1,
+  "name": "Cave A",
+  "shape": "Box",
+  "size": [
+    17.3,
+    15.1,
+    21.9
+  ],
+  "tags": [
+    "cave",
+    "no-fly",
+    "dark"
+  ],
+  "properties": {
+    "flightAllowed": "false",
+    "ambient": "cave"
+  },
+  "color": [
+    0.9,
+    0.5,
+    0.2
+  ],
+  "priority": 0
+}
