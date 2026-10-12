@@ -28,6 +28,7 @@ public class Weather : VortexBehaviour
     {
         public string Name;
         public float FogDensity, FogHeightY, FogFalloff, FogR, FogG, FogB;
+        public bool FogFromSky;   // the haze is the sky's own horizon colour, FogR/G/B a tint on it (Atmosphere.SetFog fromSky)
         public float SunIntensity, SunR, SunG, SunB;
         public float SkyExposure, Ambient, Wind;
         public float SceneExposure, FogSunGlow;   // stops before the tonemapper; the sun's glow in the fog
@@ -37,11 +38,11 @@ public class Weather : VortexBehaviour
     }
     private static readonly Preset[] Presets =
     {
-        new Preset { Name = "clear",     FogDensity = 0.0004f, FogHeightY = -4f, FogFalloff = 0.012f, FogR = 0.60f, FogG = 0.65f, FogB = 0.72f, SunIntensity = 8f, SunR = 1f, SunG = 0.84f, SunB = 0.62f, SkyExposure = 0.4f, Ambient = 0.55f, Wind = 0.5f, SceneExposure = 1.7f, FogSunGlow = 0.2f, Sky = "Assets/Skies/syferfontein_18d_clear_puresky_2k.hdr", SunPitch = 18.19f, SunYaw = -144.05f },
-        new Preset { Name = "noon",      FogDensity = 0.0011f, FogHeightY = -4f, FogFalloff = 0.012f, FogR = 0.40f, FogG = 0.43f, FogB = 0.50f, SunIntensity = 5.5f, SunR = 1f, SunG = 0.93f, SunB = 0.82f, SkyExposure = 1.0f, Ambient = 1.0f, Wind = 0.5f, SceneExposure = 1.7f, FogSunGlow = 0.45f, Sky = "Assets/Skies/goegap_2k.hdr", SunPitch = 46.32f, SunYaw = -141.24f },
+        new Preset { Name = "clear",     FogDensity = 0.0004f, FogHeightY = -4f, FogFalloff = 0.012f, FogR = 1f, FogG = 1f, FogB = 1f, FogFromSky = true, SunIntensity = 8f, SunR = 1f, SunG = 0.84f, SunB = 0.62f, SkyExposure = 0.4f, Ambient = 0.55f, Wind = 0.5f, SceneExposure = 1.7f, FogSunGlow = 0.2f, Sky = "Assets/Skies/syferfontein_18d_clear_puresky_2k.hdr", SunPitch = 18.19f, SunYaw = -144.05f },
+        new Preset { Name = "noon",      FogDensity = 0.0011f, FogHeightY = -4f, FogFalloff = 0.012f, FogR = 1f, FogG = 1f, FogB = 1f, FogFromSky = true, SunIntensity = 5.5f, SunR = 1f, SunG = 0.93f, SunB = 0.82f, SkyExposure = 1.0f, Ambient = 1.0f, Wind = 0.5f, SceneExposure = 1.7f, FogSunGlow = 0.45f, Sky = "Assets/Skies/goegap_2k.hdr", SunPitch = 46.32f, SunYaw = -141.24f },
         new Preset { Name = "haze",      FogDensity = 0.0032f, FogHeightY = 2f,  FogFalloff = 0.02f,  FogR = 0.46f, FogG = 0.44f, FogB = 0.42f, SunIntensity = 4.6f, SunR = 1f, SunG = 0.88f, SunB = 0.72f, SkyExposure = 0.9f, Ambient = 0.95f,  Wind = 1.1f, SceneExposure = 1.5f, FogSunGlow = 0.8f, Haze = true, Sky = "Assets/Skies/goegap_2k.hdr", SunPitch = 46.32f, SunYaw = -141.24f },
         new Preset { Name = "sandstorm", FogDensity = 0.012f,  FogHeightY = 12f, FogFalloff = 0.012f, FogR = 0.42f, FogG = 0.32f, FogB = 0.20f, SunIntensity = 2.4f, SunR = 1f, SunG = 0.74f, SunB = 0.48f, SkyExposure = 0.6f,  Ambient = 1.0f,  Wind = 2.6f, SceneExposure = 1.2f, FogSunGlow = 0.6f, Haze = true, Storm = true, SunPitch = 46.32f, SunYaw = -141.24f, TopR = 0.62f, TopG = 0.50f, TopB = 0.36f, HorR = 0.80f, HorG = 0.64f, HorB = 0.44f, BotR = 0.66f, BotG = 0.50f, BotB = 0.34f },
-        new Preset { Name = "dusk",      FogDensity = 0.0022f, FogHeightY = -2f, FogFalloff = 0.025f, FogR = 0.34f, FogG = 0.26f, FogB = 0.22f, SunIntensity = 3.6f, SunR = 1f, SunG = 0.64f, SunB = 0.38f, SkyExposure = 1.0f,  Ambient = 0.9f,  Wind = 0.4f, SceneExposure = 1.3f, FogSunGlow = 1.6f, Sky = "Assets/Skies/rogland_sunset_2k.hdr", SunPitch = 12.57f, SunYaw = -144.05f },
+        new Preset { Name = "dusk",      FogDensity = 0.0022f, FogHeightY = -2f, FogFalloff = 0.025f, FogR = 1f, FogG = 1f, FogB = 1f, FogFromSky = true, SunIntensity = 3.6f, SunR = 1f, SunG = 0.64f, SunB = 0.38f, SkyExposure = 1.0f,  Ambient = 0.9f,  Wind = 0.4f, SceneExposure = 1.3f, FogSunGlow = 1.6f, Sky = "Assets/Skies/rogland_sunset_2k.hdr", SunPitch = 12.57f, SunYaw = -144.05f },
     };
 
     private int _from, _to; private float _t = 1f;
@@ -98,10 +99,26 @@ public class Weather : VortexBehaviour
 
     private static float L(float a, float b, float s) { return a + (b - a) * s; }
 
+    /// <summary>A preset's haze colour as the renderer would show it: the sky's horizon times the tint when it follows the sky.</summary>
+    private static void FogColorOf(Preset p, out float r, out float g, out float b)
+    {
+        float hr, hg, hb;
+        if (p.FogFromSky && Atmosphere.SkyHorizon(out hr, out hg, out hb)) { r = hr * p.FogR; g = hg * p.FogG; b = hb * p.FogB; }
+        else { r = p.FogR; g = p.FogG; b = p.FogB; }
+    }
+
     private void Apply(Preset a, Preset b, float s, bool force)
     {
-        Atmosphere.SetFog(L(a.FogDensity, b.FogDensity, s), L(a.FogHeightY, b.FogHeightY, s), L(a.FogFalloff, b.FogFalloff, s),
-                          L(a.FogR, b.FogR, s), L(a.FogG, b.FogG, s), L(a.FogB, b.FogB, s));
+        // the haze: at rest a sky-following preset keeps tracking its sky; in between, both presets' colours are resolved
+        // against the current sky and blended, so clear (the sky's horizon) crossfades into a sandstorm's brown without a jump
+        Preset fogOf = s >= 1f ? b : a;
+        if ((s <= 0f || s >= 1f) && fogOf.FogFromSky)
+            Atmosphere.SetFog(L(a.FogDensity, b.FogDensity, s), L(a.FogHeightY, b.FogHeightY, s), L(a.FogFalloff, b.FogFalloff, s), fogOf.FogR, fogOf.FogG, fogOf.FogB, fromSky: true);
+        else
+        {
+            float ar, ag, ab, br, bg, bb; FogColorOf(a, out ar, out ag, out ab); FogColorOf(b, out br, out bg, out bb);
+            Atmosphere.SetFog(L(a.FogDensity, b.FogDensity, s), L(a.FogHeightY, b.FogHeightY, s), L(a.FogFalloff, b.FogFalloff, s), L(ar, br, s), L(ag, bg, s), L(ab, bb, s));
+        }
         Atmosphere.SetFogSunGlow(L(a.FogSunGlow, b.FogSunGlow, s));
         Atmosphere.SetExposure(L(a.SceneExposure, b.SceneExposure, s));
         if (_sun > 0)
