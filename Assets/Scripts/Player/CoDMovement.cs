@@ -237,6 +237,14 @@ public class CoDMovement : VortexBehaviour
         _standEyeY = EyeHeight;
         _eyeCur = _standEyeY;
         _feet = new Vector3(Position.X, Position.Y - EyeHeight, Position.Z);
+        // never start inside the ground (a scene that placed the entity too low, a terrain under the spawn): snap the feet onto
+        // the first surface within a few metres — a capsule that begins below a terrain sheet gets pushed through it
+        {
+            RaycastHit snap;
+            if (Physics.Raycast(new Vector3(_feet.X, _feet.Y + 2.5f, _feet.Z), new Vector3(0f, -1f, 0f), 6f, out snap, ~0, EntityId)
+                && snap.Point.Y > _feet.Y - 0.05f && snap.Point.Y < _feet.Y + 2.4f)
+                _feet = new Vector3(_feet.X, snap.Point.Y + 0.03f, _feet.Z);
+        }
         Vector3 r = Rotation; _pitch = r.X; _yaw = r.Y;
         _levelCapture = System.Environment.GetEnvironmentVariable("VM_LEVEL") == "1";   // capture-only: lock a clean level view
         _forceAds     = System.Environment.GetEnvironmentVariable("VM_ADS") == "1";     // capture-only: force aim-down-sight

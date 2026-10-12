@@ -30,16 +30,18 @@ public class Weather : VortexBehaviour
         public float FogDensity, FogHeightY, FogFalloff, FogR, FogG, FogB;
         public float SunIntensity, SunR, SunG, SunB;
         public float SkyExposure, Ambient, Wind;
+        public float SceneExposure, FogSunGlow;   // stops before the tonemapper; the sun's glow in the fog
         public bool Haze, Storm;
         public string Sky; public float SunPitch, SunYaw;   // the preset's HDRI and where its sun is (tools/hdri-analyze.py)
         public float TopR, TopG, TopB, HorR, HorG, HorB, BotR, BotG, BotB;   // or a gradient sky (a sandstorm has no blue sky)
     }
     private static readonly Preset[] Presets =
     {
-        new Preset { Name = "clear",     FogDensity = 0.0012f, FogHeightY = -4f, FogFalloff = 0.03f,  FogR = 0.80f, FogG = 0.74f, FogB = 0.64f, SunIntensity = 4.8f, SunR = 1f, SunG = 0.87f, SunB = 0.68f, SkyExposure = 0.85f, Ambient = 0.85f, Wind = 0.5f, Sky = "Assets/Skies/goegap_2k.hdr", SunPitch = 46.32f, SunYaw = -141.24f },
-        new Preset { Name = "haze",      FogDensity = 0.0032f, FogHeightY = 2f,  FogFalloff = 0.02f,  FogR = 0.78f, FogG = 0.70f, FogB = 0.56f, SunIntensity = 4.0f, SunR = 1f, SunG = 0.85f, SunB = 0.64f, SkyExposure = 0.78f, Ambient = 0.8f,  Wind = 1.1f, Haze = true, Sky = "Assets/Skies/goegap_2k.hdr", SunPitch = 46.32f, SunYaw = -141.24f },
-        new Preset { Name = "sandstorm", FogDensity = 0.012f,  FogHeightY = 12f, FogFalloff = 0.012f, FogR = 0.74f, FogG = 0.58f, FogB = 0.38f, SunIntensity = 2.4f, SunR = 1f, SunG = 0.74f, SunB = 0.48f, SkyExposure = 0.6f,  Ambient = 1.0f,  Wind = 2.6f, Haze = true, Storm = true, SunPitch = 46.32f, SunYaw = -141.24f, TopR = 0.62f, TopG = 0.50f, TopB = 0.36f, HorR = 0.80f, HorG = 0.64f, HorB = 0.44f, BotR = 0.66f, BotG = 0.50f, BotB = 0.34f },
-        new Preset { Name = "dusk",      FogDensity = 0.0022f, FogHeightY = -2f, FogFalloff = 0.025f, FogR = 0.72f, FogG = 0.52f, FogB = 0.40f, SunIntensity = 3.4f, SunR = 1f, SunG = 0.64f, SunB = 0.38f, SkyExposure = 1.0f,  Ambient = 0.8f,  Wind = 0.4f, Sky = "Assets/Skies/rogland_sunset_2k.hdr", SunPitch = 12.57f, SunYaw = -144.05f },
+        new Preset { Name = "clear",     FogDensity = 0.00028f, FogHeightY = -4f, FogFalloff = 0.012f, FogR = 0.70f, FogG = 0.62f, FogB = 0.52f, SunIntensity = 8f, SunR = 1f, SunG = 0.84f, SunB = 0.62f, SkyExposure = 0.4f, Ambient = 0.45f, Wind = 0.5f, SceneExposure = 1.7f, FogSunGlow = 0.2f, Sky = "Assets/Skies/syferfontein_18d_clear_puresky_2k.hdr", SunPitch = 18.19f, SunYaw = -144.05f },
+        new Preset { Name = "noon",      FogDensity = 0.0011f, FogHeightY = -4f, FogFalloff = 0.012f, FogR = 0.40f, FogG = 0.43f, FogB = 0.50f, SunIntensity = 5.5f, SunR = 1f, SunG = 0.93f, SunB = 0.82f, SkyExposure = 1.0f, Ambient = 1.0f, Wind = 0.5f, SceneExposure = 1.7f, FogSunGlow = 0.45f, Sky = "Assets/Skies/goegap_2k.hdr", SunPitch = 46.32f, SunYaw = -141.24f },
+        new Preset { Name = "haze",      FogDensity = 0.0032f, FogHeightY = 2f,  FogFalloff = 0.02f,  FogR = 0.46f, FogG = 0.44f, FogB = 0.42f, SunIntensity = 4.6f, SunR = 1f, SunG = 0.88f, SunB = 0.72f, SkyExposure = 0.9f, Ambient = 0.95f,  Wind = 1.1f, SceneExposure = 1.5f, FogSunGlow = 0.8f, Haze = true, Sky = "Assets/Skies/goegap_2k.hdr", SunPitch = 46.32f, SunYaw = -141.24f },
+        new Preset { Name = "sandstorm", FogDensity = 0.012f,  FogHeightY = 12f, FogFalloff = 0.012f, FogR = 0.42f, FogG = 0.32f, FogB = 0.20f, SunIntensity = 2.4f, SunR = 1f, SunG = 0.74f, SunB = 0.48f, SkyExposure = 0.6f,  Ambient = 1.0f,  Wind = 2.6f, SceneExposure = 1.2f, FogSunGlow = 0.6f, Haze = true, Storm = true, SunPitch = 46.32f, SunYaw = -141.24f, TopR = 0.62f, TopG = 0.50f, TopB = 0.36f, HorR = 0.80f, HorG = 0.64f, HorB = 0.44f, BotR = 0.66f, BotG = 0.50f, BotB = 0.34f },
+        new Preset { Name = "dusk",      FogDensity = 0.0022f, FogHeightY = -2f, FogFalloff = 0.025f, FogR = 0.34f, FogG = 0.26f, FogB = 0.22f, SunIntensity = 3.6f, SunR = 1f, SunG = 0.64f, SunB = 0.38f, SkyExposure = 1.0f,  Ambient = 0.9f,  Wind = 0.4f, SceneExposure = 1.3f, FogSunGlow = 1.6f, Sky = "Assets/Skies/rogland_sunset_2k.hdr", SunPitch = 12.57f, SunYaw = -144.05f },
     };
 
     private int _from, _to; private float _t = 1f;
@@ -100,6 +102,8 @@ public class Weather : VortexBehaviour
     {
         Atmosphere.SetFog(L(a.FogDensity, b.FogDensity, s), L(a.FogHeightY, b.FogHeightY, s), L(a.FogFalloff, b.FogFalloff, s),
                           L(a.FogR, b.FogR, s), L(a.FogG, b.FogG, s), L(a.FogB, b.FogB, s));
+        Atmosphere.SetFogSunGlow(L(a.FogSunGlow, b.FogSunGlow, s));
+        Atmosphere.SetExposure(L(a.SceneExposure, b.SceneExposure, s));
         if (_sun > 0)
         {
             var light = Scene.GetLight(_sun);

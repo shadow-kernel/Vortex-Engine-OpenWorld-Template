@@ -2,9 +2,9 @@
   "Name": "aerial_sand",
   "Version": "2.0",
   "BaseColor": [
-    1,
-    1,
-    1,
+    1.0,
+    0.97,
+    0.9,
     1
   ],
   "Metallic": 0,
