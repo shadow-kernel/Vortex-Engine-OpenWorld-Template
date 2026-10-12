@@ -21,6 +21,7 @@ public static class PlayerRig
     public static float   AimPitch;                 // clamped look pitch (deg) fed additively to the spine bones
     public static float   MoveForwardN, MoveRightN; // local move intent relative to facing (-1..1) for the blend
     public static bool    IsSprinting, IsCrouched, IsSliding, IsAirborne;
+    public static bool    Swimming;                // chest-deep in water: the weapon rides high, no sprint, no slide
 
     // ---- orbit inspector (press P): the render camera detaches and circles a standing character so you can
     // inspect it from outside with mouse-orbit + wheel-zoom. FP body + FP gun hide themselves while active. ----
@@ -187,6 +188,7 @@ public class CoDMovement : VortexBehaviour
     private bool  _lowCeiling;     // something is overhead: the player can't stand up yet
     private float _eyeCur, _fovCur;
     private float _vx, _vz, _vy;
+    private bool _swimming;
     private bool  _grounded, _prevGrounded;
     private bool  _jumpHeld, _escHeld, _paused;
     private float _pitch, _yaw;
@@ -476,10 +478,24 @@ public class CoDMovement : VortexBehaviour
                        : sprint ? SprintSpeed
                        :          WalkSpeed;
 
+        // ---------------- swimming (#200): chest-deep water carries the player ----------------
+        // the surface under the feet (NaN over dry land); deeper than 1.1 m = swimming: no gravity, the body floats with the
+        // eyes a hand above the surface, Space swims up, Ctrl dives, the arms are slow, no sprint or slide
+        float surface = Water.Height(_feet.X, _feet.Z);
+        bool swimming = !float.IsNaN(surface) && _feet.Y < surface - 1.1f && !_mantling;
+        if (swimming != _swimming) { _swimming = swimming; _sliding = false; _tacSprint = false; }
+        if (swimming) { maxSpeed = sprint ? 2.6f : 1.8f; _grounded = false; _sliding = false; }
+        PlayerRig.Swimming = swimming;
+
         // ---------------- accelerate ----------------
         if (!_mantling)
         {
-            if (_grounded)
+            if (swimming)
+            {
+                ApplyFriction(4f, dt);
+                Accelerate(wishX, wishZ, maxSpeed, 6f, dt);
+            }
+            else if (_grounded)
             {
                 ApplyFriction(_sliding ? SlideFriction : Friction, dt);
                 if (!_sliding) Accelerate(wishX, wishZ, maxSpeed, GroundAccel, dt);
@@ -504,7 +520,16 @@ public class CoDMovement : VortexBehaviour
             Vector3 ledge;
             if (want && TryFindLedge(wishX, wishZ, out ledge)) StartMantle(ledge);
         }
-        if (!_mantling)
+        if (!_mantling && swimming)
+        {
+            // buoyancy: the feet seek the depth where the eyes ride a hand above the surface; Space swims up, Ctrl dives
+            float floatFeet = surface - EyeHeight + 0.25f;
+            float want = (floatFeet - _feet.Y) * 2.5f;
+            if (jump) want = 1.6f; else if (crouch) want = -1.8f;
+            if (want > 2.5f) want = 2.5f; else if (want < -2.5f) want = -2.5f;
+            _vy += (want - _vy) * System.Math.Min(1f, 6f * dt);
+        }
+        else if (!_mantling)
         {
             if (_grounded && jumpPressed && !_sliding && _jumpCd <= 0f) { _vy = JumpSpeed; _grounded = false; _jumpCd = JumpCooldown; }
             else if (_grounded && _vy < 0f) _vy = 0f;
