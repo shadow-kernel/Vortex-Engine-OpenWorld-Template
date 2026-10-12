@@ -1,0 +1,182 @@
+{
+  "name": "Beam_Haze",
+  "version": 1,
+  "emitters": [
+    {
+      "name": "beam haze",
+      "enabled": true,
+      "maxParticles": 240,
+      "duration": 5,
+      "looping": true,
+      "prewarm": true,
+      "startDelay": 0,
+      "simulationSpace": "world",
+      "simulationSpeed": 1,
+      "seed": 0,
+      "rate": 20,
+      "rateOverDistance": 0,
+      "bursts": [],
+      "lifetime": [
+        8,
+        12
+      ],
+      "speed": [
+        0.03,
+        0.12
+      ],
+      "size": [
+        4.5,
+        7.0
+      ],
+      "rotation": [
+        0,
+        360
+      ],
+      "rotationSpeed": [
+        -20,
+        20
+      ],
+      "color": [
+        1.0,
+        0.82,
+        0.55,
+        0.1
+      ],
+      "color2": [
+        1.0,
+        0.78,
+        0.5,
+        0.07
+      ],
+      "gravity": 0,
+      "drag": 0,
+      "inheritVelocity": 0,
+      "shape": {
+        "type": "box",
+        "emitFrom": "volume",
+        "radius": 0.1,
+        "radiusThickness": 1,
+        "angle": 25,
+        "arc": 360,
+        "length": 1,
+        "box": [
+          2.6,
+          13.0,
+          2.6
+        ],
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "randomDirection": 0
+      },
+      "velocity": [
+        2.5,
+        0.2,
+        1.5
+      ],
+      "velocitySpace": "world",
+      "velocityCurve": {
+        "keys": []
+      },
+      "speedCurve": {
+        "keys": []
+      },
+      "sizeCurve": {
+        "keys": []
+      },
+      "colorGradient": {
+        "keys": [
+          {
+            "t": 0,
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0
+          },
+          {
+            "t": 0.2,
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.55
+          },
+          {
+            "t": 0.8,
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.55
+          },
+          {
+            "t": 1,
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0
+          }
+        ]
+      },
+      "noise": {
+        "strength": 0.5,
+        "frequency": 0.08,
+        "scrollSpeed": 0.2,
+        "octaves": 2
+      },
+      "flipbook": {
+        "tilesX": 1,
+        "tilesY": 1,
+        "mode": "lifetime",
+        "cycles": 1,
+        "fps": 15,
+        "startFrame": [
+          0,
+          0
+        ],
+        "blend": false
+      },
+      "render": {
+        "mode": "billboard",
+        "blend": "additive",
+        "texture": "Textures/smoke_puff.png",
+        "lit": false,
+        "softDistance": 1.0,
+        "lengthScale": 2,
+        "velocityScale": 0,
+        "sort": "auto",
+        "emissive": 1.0,
+        "aspect": 1
+      },
+      "collision": {
+        "enabled": false,
+        "mode": "bounce",
+        "bounce": 0.4,
+        "dampen": 0.2,
+        "lifetimeLoss": 0,
+        "radius": 0.02,
+        "thickness": 0.5
+      },
+      "trails": {
+        "enabled": false,
+        "lifetime": 0.3,
+        "minDistance": 0.05,
+        "maxPoints": 16,
+        "width": 1,
+        "widthCurve": {
+          "keys": []
+        },
+        "colorGradient": {
+          "keys": []
+        },
+        "inheritColor": true,
+        "textureMode": "stretch"
+      }
+    }
+  ]
+}
