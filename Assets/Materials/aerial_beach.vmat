@@ -1,0 +1,37 @@
+{
+  "Name": "aerial_beach",
+  "Version": "2.0",
+  "BaseColor": [
+    1.0,
+    0.98,
+    0.93,
+    1
+  ],
+  "Metallic": 0,
+  "Roughness": 1,
+  "AmbientOcclusion": 1,
+  "NormalStrength": 1,
+  "HeightScale": 0.0,
+  "UseDirectXNormals": true,
+  "EmissiveStrength": 0.0,
+  "TwoSided": false,
+  "BlendMode": "Opaque",
+  "CastShadows": true,
+  "ReceiveShadows": true,
+  "AlbedoTexture": "../Textures/aerial_beach_01/aerial_beach_01_diff_4k.jpg",
+  "UVTiling": [
+    1,
+    1
+  ],
+  "UVOffset": [
+    0,
+    0
+  ],
+  "RealWorldSize": [
+    15000.0,
+    15000.0
+  ],
+  "NormalTexture": "../Textures/aerial_beach_01/aerial_beach_01_nor_dx_4k.jpg",
+  "RoughnessTexture": "../Textures/aerial_beach_01/aerial_beach_01_rough_4k.jpg",
+  "AOTexture": "../Textures/aerial_beach_01/aerial_beach_01_ao_4k.jpg"
+}
