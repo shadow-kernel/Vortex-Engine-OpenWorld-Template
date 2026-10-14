@@ -1,6 +1,6 @@
 using Vortex;
 // FOOTPRINTS — every stride presses a boot print into the sand: a projected decal (left, right, left …) under the foot,
-// turned the way you walk, darker where the sand is pushed down, gone again after a couple of minutes. Only on terrain
+// turned the way you walk, darker where the sand is pushed down, gone again after a minute. Only on terrain
 // and only on its sand / damp layers — rock keeps no prints. Attach to the Player (the entity the camera and the
 // controller sit on); the stride length and the print size are yours to tune.
 public class Footprints : VortexBehaviour
@@ -9,7 +9,7 @@ public class Footprints : VortexBehaviour
     public float  SprintStride = 1.25f;
     public float  Width       = 0.17f;    // half the distance between the left and the right foot
     public float  Length      = 0.33f;    // print size (m)
-    public float  Lifetime    = 150f;     // seconds until a print has faded
+    public float  Lifetime    = 60f;      // seconds until a print has faded (60 s of walking ≈ 300 prints: the 512 decals stay enough for bullet holes)
     public string LeftMaterial  = "Assets/Materials/Decals/Footprint_Sand_L.vmat";
     public string RightMaterial = "Assets/Materials/Decals/Footprint_Sand_R.vmat";
     public float  Opacity     = 0.85f;
