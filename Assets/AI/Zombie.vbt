@@ -146,7 +146,7 @@
             "name": "go to the last known spot",
             "params": {
               "target": "LastKnown",
-              "acceptance": "1.5",
+              "acceptance": "0.5",
               "speed": "2.6"
             }
           },
