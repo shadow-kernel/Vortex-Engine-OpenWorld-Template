@@ -4,7 +4,7 @@
 
 # Vortex Engine — Open World Template
 
-### A desert oasis under a real sky, playable with the Tactical Shooter's weapons — for the **[Vortex Engine](https://github.com/shadow-kernel/Vortex-Engine)**.
+### A desert oasis under a real sky to walk, swim and explore — with the Tactical Shooter's gun range next door — for the **[Vortex Engine](https://github.com/shadow-kernel/Vortex-Engine)**.
 
 <br/>
 
@@ -16,7 +16,7 @@
 
 **512 metres of dunes. Two turquoise lakes in a basin. Date palms along the shore, quiver trees on the gravel, a sandstone escarpment to the north — and the midday sun of a real Namaqualand sky.**
 
-Press Play and you stand on the sand strip between the lakes with the UZI in your hands. Walk the shore under the palms, climb the dunes, look back at the oasis from the escarpment. Everything you see is engine data you can sculpt, paint and tune in the editor — or have Claude reshape from the editor chat.
+Press Play and you stand at the edge of the palm grove. Walk the shore under the palms, swim across the lakes, climb the dunes, look back at the oasis from the escarpment. The guns are in the **Range**, the project's second scene. Everything you see is engine data you can sculpt, paint and tune in the editor — or have Claude reshape from the editor chat.
 
 </div>
 
@@ -32,17 +32,17 @@ Press Play and you stand on the sand strip between the lakes with the UZI in you
 | **Vegetation** | one `Foliage` entity (`Assets/Foliage/Oasis_Vegetation.vfoliage`) with 28 types: six palm models (0.4–0.8 scale → 8–17 m), quiver trees, desert shrubs, succulents, dead wood, reeds and grass at the water, boulders, cliff rocks, stones, three rock formations on the dunes. Palms sway in the wind; trunks, boulders and cliffs collide. Paint more with the Foliage brush in the Inspector (double-click the `.vfoliage` in the Asset Browser to select the layer) |
 | **Sky & sun** | `Assets/Skies/goegap_2k.hdr` as the sky; the directional light points where the picture's sun is (azimuth 219°, elevation 46°); the gradient colours are the environment the water and glossy surfaces reflect |
 | **Air** | warm exp² haze that thins with height, SSAO, a touch of bloom (scene settings) |
-| **Player** | the Tactical Shooter rig (`Assets/Prefabs/TacticalPlayer.ventity`): animated UZI and CZ Scorpion, CoD movement (sprint, slide, mantle), HUD. The gun **RANGE** is the project's second scene |
+| **Player** | the Tactical Shooter's movement (`CoDMovement.cs`: sprint, slide, mantle) and **swimming** — chest-deep water carries you, **Space** swims up, **Ctrl** dives — with footprints in the sand and footsteps. No weapons and no HUD here: the oasis is for walking. The armed rig — the animated UZI and CZ Scorpion, the HUD, health and med-kits, four combat bots holding the yard — is in the gun **RANGE**, the project's second scene; `Assets/Prefabs/TacticalPlayer.ventity` is its player (movement and health) as a prefab |
 | **Weather** | `Assets/Scripts/World/Weather.cs` blends four presets over twelve seconds — **clear**, **haze**, **sandstorm** (brown sky, 80 m visibility, sand sheets racing past, a storm in the palms) and **dusk** (the sunset HDRI, a low orange sun): fog and height fog, the sun, the sky, the ambient light, the wind, the dust emitters under the player and the wind you hear. **O** next preset, **L** previous; `Set("sandstorm")` from any script |
-| **The infected** | `Assets/Prefabs/Zombie.ventity` — operators who did not make it out: a hunched shamble between random points, a flat-out sprint once they see you (80 m, 160° view, they hear a shot from 70 m), a lunge and bite within reach, your bullets drop them into a ragdoll. `Assets/AI/Zombie.vbt` decides, `Assets/Scripts/AI/Zombie.cs` is the body. The **Zombies** entity's `ZombieDirector.cs` keeps up to ten on the navmesh 40–130 m around you and tops them up; **Z** calls a wave of four |
+| **The infected** | `Assets/Prefabs/Zombie.ventity` — operators who did not make it out: a hunched shamble between random points, a flat-out sprint once they see you (80 m, 160° view, they hear a shot from 70 m), a lunge and bite within reach, your bullets drop them into a ragdoll. `Assets/AI/Zombie.vbt` decides, `Assets/Scripts/AI/Zombie.cs` is the body. None roam the oasis today — the scene went without them; the prefab, the tree and the scripts stay: place `Zombie.ventity` anywhere, or put `ZombieDirector.cs` on an entity — it keeps up to ten on the navmesh 40–130 m around you and tops them up, **Z** calls a wave of four. A bite lands on the player's `PlayerHealth` (the Range's player has one; the oasis player has none, so add it there first) |
 
 ## 🎮 Controls
 
 | Input | Action |
 |-------|--------|
-| **WASD** + mouse | move + look · **Shift** sprint (double-tap **W** tactical sprint) · **Ctrl / C** crouch / slide · **Space** jump / mantle |
-| **LMB** | fire · **RMB** aim · **R** reload · **B** fire mode · **1 / 2** switch weapon · **I** inspect |
-| **O / L** | next / previous weather · **Z** a wave of infected |
+| **WASD** + mouse | move + look · **Shift** sprint (double-tap **W** tactical sprint) · **Ctrl / C** crouch / slide · **Space** jump / mantle · in deep water **Space** swims up, **Ctrl** dives |
+| **LMB** (Range) | fire · **RMB** aim · **R** reload · **B** fire mode · **1 / 2** switch weapon · **I** inspect · **H** med-kit · **F1** the feature tour's keys |
+| **O / L** (oasis) | next / previous weather · **Z** a wave of infected (with a `ZombieDirector` in the scene) |
 | **ESC** | settings · **P** (editor) free camera |
 
 ## 🛠 Rebuilding the oasis
